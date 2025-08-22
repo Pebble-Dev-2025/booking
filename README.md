@@ -1,212 +1,177 @@
-# Pebbble Booking System
+# Online Booking System
 
-A modern, responsive booking system built with React and TypeScript, designed for both PC and mobile devices. This application provides a seamless reservation experience with automatic device detection and adaptive UI.
+A modern, responsive online booking system built with Next.js and React. This application provides a seamless booking experience with a clean, intuitive interface powered by Ant Design components.
 
 ## ✨ Features
 
-- **📱 Responsive Design**: Automatic PC/Mobile detection with optimized UI for each platform
-- **🎨 Modern UI Components**: Built with Ant Design for professional user interface
-- **📐 Mobile Adaptation**: PostCSS px-to-viewport for perfect mobile scaling
-- **⚡ Fast Development**: Vite for lightning-fast builds and HMR
-- **🔧 TypeScript**: Full type safety and enhanced development experience
-- **✅ Code Quality**: ESLint + Prettier with Airbnb configuration
-- **🔄 State Management**: Zustand for lightweight and efficient state handling
-- **🛡️ Git Hooks**: Automated code formatting and linting before commits
+- 🚀 **Modern Tech Stack**: Built with Next.js 15, React 19, and TypeScript
+- 🎨 **Beautiful UI**: Styled with Ant Design components and Tailwind CSS
+- 📱 **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
+- 🔧 **State Management**: Zustand for efficient and simple state management
+- 🌐 **API Integration**: Axios for robust HTTP client functionality
+- 🔍 **Code Quality**: ESLint and Prettier configured for consistent code style
+- ⚡ **Performance**: Optimized with Next.js App Router and modern React features
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
-### Frontend Framework
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4 + Ant Design
+- **State Management**: Zustand
+- **HTTP Client**: Axios
+- **Fonts**: Geist Sans & Geist Mono
+- **Development Tools**: ESLint, Prettier
 
-- **React 19** - Latest React with modern features
-- **TypeScript 5.9** - Type-safe development
-- **Vite 7** - Next-generation frontend tooling
-
-### UI & Styling
-
-- **Ant Design 5.27** - Enterprise-class UI components
-- **Tailwind CSS 4.1** - Utility-first CSS framework
-- **PostCSS** - CSS preprocessing with px-to-viewport plugin
-
-### Development Tools
-
-- **ESLint** - Code linting with Airbnb configuration
-- **Prettier** - Code formatting
-- **Husky** - Git hooks for code quality
-- **lint-staged** - Run linters on staged files
-
-### State & Routing
-
-- **Zustand 5.0** - Lightweight state management
-- **React Router DOM 7.8** - Client-side routing
-- **Axios 1.11** - HTTP client for API communication
-
-## 📁 Project Structure
-
-```
-src/
-├── assets/         # Static assets (images, icons)
-├── App.tsx         # Main application component
-├── App.css         # Application styles
-├── main.tsx        # Application entry point
-└── index.css       # Global styles
-
-public/
-├── pb.jpg          # Project favicon/logo
-└── vite.svg        # Vite logo
-
-Config Files:
-├── tsconfig.json           # TypeScript configuration
-├── tsconfig.node.json      # Node.js TypeScript config
-├── vite.config.js          # Vite build configuration
-├── postcss.config.js       # PostCSS configuration
-├── eslint.config.js        # ESLint rules
-├── .prettierrc             # Prettier formatting rules
-├── .prettierignore         # Prettier ignore patterns
-└── package.json            # Dependencies and scripts
-```
-
-## 🚀 Getting Started
+## 📦 Installation
 
 ### Prerequisites
 
-- Node.js 20.19+ or 22.12+
-- npm or yarn package manager
+- Node.js 18.0 or later
+- npm, yarn, pnpm, or bun
 
-### Installation
+### Setup
 
 1. **Clone the repository**
-
    ```bash
    git clone <repository-url>
    cd booking
    ```
 
 2. **Install dependencies**
-
    ```bash
    npm install
+   # or
+   yarn install
+   # or
+   pnpm install
    ```
 
-3. **Start development server**
-
+3. **Start the development server**
    ```bash
    npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
    ```
 
 4. **Open your browser**
-   Navigate to `http://localhost:3000`
+   Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
 
-## 📜 Available Scripts
+## 🚀 Available Scripts
 
-### Development
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start the development server |
+| `npm run build` | Build the application for production |
+| `npm run start` | Start the production server |
+| `npm run lint` | Run ESLint to check for code issues |
+| `npm run lint:fix` | Fix auto-fixable ESLint issues |
+| `npm run format` | Format code with Prettier |
+| `npm run format:check` | Check if code needs formatting |
+| `npm run type-check` | Run TypeScript type checking |
 
-```bash
-npm run dev          # Start development server
-npm run preview      # Preview production build
+## 📁 Project Structure
+
+```
+booking/
+├── src/
+│   └── app/
+│       ├── globals.css      # Global styles with Tailwind
+│       ├── layout.tsx       # Root layout component
+│       └── page.tsx         # Home page component
+├── public/                  # Static assets
+├── .prettierrc             # Prettier configuration
+├── .prettierignore         # Prettier ignore patterns
+├── eslint.config.mjs       # ESLint configuration
+├── next.config.ts          # Next.js configuration
+├── postcss.config.mjs      # PostCSS configuration
+├── tsconfig.json           # TypeScript configuration
+└── package.json            # Project dependencies and scripts
 ```
 
-### Building
+## ⚙️ Configuration
 
-```bash
-npm run build        # Build for production
-npm run type-check   # TypeScript type checking
-```
+### ESLint
 
-### Code Quality
+The project uses ESLint with Next.js core rules and custom TypeScript configurations:
+- Unused variables detection
+- TypeScript strict rules
+- React best practices
 
-```bash
-npm run lint         # Run ESLint
-npm run lint:fix     # Fix ESLint issues automatically
-npm run format       # Format code with Prettier
-npm run format:check # Check code formatting
-```
+### Prettier
 
-## ⚙️ Configuration Details
+Code formatting is configured with:
+- Semicolons enabled
+- Double quotes
+- 80-character line width
+- 2-space indentation
 
-### Mobile Adaptation
+### TypeScript
 
-- **Design Width**: 375px (iPhone standard)
-- **Viewport Conversion**: Automatic px to vw conversion
-- **Precision**: 3 decimal places
-- **Minimum Value**: 1px (values ≤1px won't be converted)
+Strict TypeScript configuration with:
+- Path aliases (`@/*` for `./src/*`)
+- Next.js plugin integration
+- Modern ES2017 target
 
-### Code Standards
+## 🎨 Styling
 
-- **ESLint**: Airbnb configuration with TypeScript support
-- **Prettier**: Consistent code formatting
-- **Git Hooks**: Pre-commit code quality checks
-- **Import Sorting**: Automatic import organization
+The project uses a combination of:
+- **Tailwind CSS v4**: For utility-first styling
+- **Ant Design**: For pre-built React components
+- **CSS Variables**: For theming support (light/dark mode ready)
 
-### Build Optimization
+## 🔧 Development Workflow
 
-- **Path Aliases**: `@/*` maps to `src/*`
-- **TypeScript**: Strict mode enabled
-- **Tree Shaking**: Automatic dead code elimination
-- **Asset Optimization**: Automatic image and asset optimization
+1. **Code Style**: Automatic formatting with Prettier and linting with ESLint
+2. **Type Safety**: Full TypeScript support with strict configuration
+3. **Hot Reload**: Instant updates during development
+4. **Build Optimization**: Next.js automatic optimization for production
 
-## 🎯 Responsive Design
+## 📚 Learn More
 
-The application automatically detects device type and provides optimized experiences:
+To learn more about the technologies used in this project:
 
-### PC Version
+- [Next.js Documentation](https://nextjs.org/docs) - Learn about Next.js features and API
+- [React Documentation](https://react.dev) - Learn React concepts and patterns
+- [TypeScript Documentation](https://www.typescriptlang.org/docs) - TypeScript language reference
+- [Ant Design](https://ant.design/docs/react/introduce) - UI component library
+- [Tailwind CSS](https://tailwindcss.com/docs) - Utility-first CSS framework
+- [Zustand](https://zustand-demo.pmnd.rs) - State management library
 
-- Full-width layout with sidebar navigation
-- Desktop-optimized component sizes
-- Hover effects and desktop interactions
+## 🚀 Deployment
 
-### Mobile Version
+### Vercel (Recommended)
 
-- Touch-friendly interface
-- Optimized for thumb navigation
-- Responsive typography and spacing
-- Mobile-specific UI patterns
+The easiest way to deploy is using [Vercel](https://vercel.com/new):
 
-## 🔧 Development Guidelines
+1. Push your code to GitHub
+2. Import your repository to Vercel
+3. Deploy with zero configuration
 
-### Code Style
+### Other Platforms
 
-- Use TypeScript for all new files
-- Follow Airbnb ESLint configuration
-- Prefer functional components with hooks
-- Use absolute imports with `@/` prefix
+This Next.js application can be deployed to any platform that supports Node.js:
+- Netlify
+- AWS Amplify
+- DigitalOcean App Platform
+- Railway
+- Render
 
-### Commit Process
-
-1. Stage your changes: `git add .`
-2. Commit with message: `git commit -m "your message"`
-3. Automatic formatting and linting will run
-4. Push to repository: `git push`
-
-### Adding New Features
-
-1. Create TypeScript interfaces in appropriate files
-2. Use Zustand for state management
-3. Follow existing component patterns
-4. Ensure mobile responsiveness
-5. Add proper TypeScript types
-
-## 📱 Device Support
-
-- **Desktop**: Chrome, Firefox, Safari, Edge (latest versions)
-- **Mobile**: iOS Safari, Chrome Mobile, Samsung Internet
-- **Tablets**: iPad, Android tablets
-- **Screen Sizes**: 320px - 1920px+ width
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+---
 
-- **Ant Design** - For the excellent UI component library
-- **Vite** - For the fast and efficient build tool
-- **React Team** - For the amazing frontend framework
-- **TypeScript** - For making JavaScript development more robust
+**Built with ❤️ by the Pebbble team**
