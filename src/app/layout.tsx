@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import "@ant-design/v5-patch-for-react-19";
 import ThemeProvider from "../components/ThemeProvider";
 import { DeviceProvider } from "../components/DeviceProvider";
 import { detectDeviceFromUserAgent } from "../utils/deviceDetection";
