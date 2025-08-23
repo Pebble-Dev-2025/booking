@@ -1,51 +1,35 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { detectDeviceFromBrowser, type DeviceInfo } from '@/utils/deviceDetection';
 
-export type DeviceType = 'mobile' | 'tablet' | 'desktop';
+export const useDevice = (initialDeviceInfo?: DeviceInfo) => {
+  const [deviceInfo, setDeviceInfo] = useState<DeviceInfo>(() => {
+    // Use initial SSR device info if provided, otherwise use safe defaults
+    return initialDeviceInfo || {
+      deviceType: 'desktop',
+      isMobile: false,
+      isTablet: false,
+      isDesktop: true,
+      shouldUseMobileUI: false,
+    };
+  });
 
-export const useDevice = () => {
-  const [deviceType, setDeviceType] = useState<DeviceType>('desktop');
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(true);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    const checkDevice = () => {
-      const userAgent = navigator.userAgent.toLowerCase();
-      const width = window.innerWidth;
-      
-      // Check for mobile devices
-      const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
-      
-      // Determine device type based on screen width and user agent
-      let type: DeviceType = 'desktop';
-      
-      if (isMobileDevice || width <= 768) {
-        if (width <= 480) {
-          type = 'mobile';
-        } else if (width <= 1024) {
-          type = 'tablet';
-        }
-      }
-      
-      // Special handling for iPad (which reports as desktop in some cases)
-      if (/ipad/i.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
-        type = 'tablet';
-      }
-      
-      setDeviceType(type);
-      setIsMobile(type === 'mobile');
-      setIsTablet(type === 'tablet');
-      setIsDesktop(type === 'desktop');
+    // Update device info after hydration
+    const updateDeviceInfo = () => {
+      const newDeviceInfo = detectDeviceFromBrowser();
+      setDeviceInfo(newDeviceInfo);
     };
 
-    // Initial check
-    checkDevice();
+    updateDeviceInfo();
+    setIsHydrated(true);
 
     // Listen for resize events
     const handleResize = () => {
-      checkDevice();
+      updateDeviceInfo();
     };
 
     window.addEventListener('resize', handleResize);
@@ -55,16 +39,8 @@ export const useDevice = () => {
     };
   }, []);
 
-  // Helper function to check if we should use mobile UI
-  const shouldUseMobileUI = () => {
-    return isMobile || (isTablet && window.innerWidth <= 768);
-  };
-
   return {
-    deviceType,
-    isMobile,
-    isTablet,
-    isDesktop,
-    shouldUseMobileUI,
+    ...deviceInfo,
+    isHydrated,
   };
 };

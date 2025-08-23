@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "@ant-design/v5-patch-for-react-19";
 import ThemeProvider from "../components/ThemeProvider";
+import { DeviceProvider } from "../components/DeviceProvider";
+import { detectDeviceFromUserAgent } from "../utils/deviceDetection";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,20 +23,27 @@ export const metadata: Metadata = {
   description: "Pebbble online booking system",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Get user agent from headers for SSR device detection
+  const headersList = await headers();
+  const userAgent = headersList.get('user-agent') || '';
+  const deviceInfo = detectDeviceFromUserAgent(userAgent);
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AntdRegistry>
-          <ThemeProvider>
-            {children}
-          </ThemeProvider>
+          <DeviceProvider deviceInfo={deviceInfo}>
+            <ThemeProvider>
+              {children}
+            </ThemeProvider>
+          </DeviceProvider>
         </AntdRegistry>
       </body>
     </html>

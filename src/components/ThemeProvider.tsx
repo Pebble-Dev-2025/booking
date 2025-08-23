@@ -2,7 +2,7 @@
 
 import { ConfigProvider } from "antd";
 import { useTheme } from "@/hooks/useTheme";
-import { useDevice } from "@/hooks/useDevice";
+import { useDeviceContext } from "./DeviceProvider";
 import MobileLayout from "./MobileLayout";
 
 interface ThemeProviderProps {
@@ -11,10 +11,10 @@ interface ThemeProviderProps {
 
 export default function ThemeProvider({ children }: ThemeProviderProps) {
   const { getAntdTheme, getBackgroundColor } = useTheme();
-  const { shouldUseMobileUI } = useDevice();
+  const { shouldUseMobileUI } = useDeviceContext();
 
   // Use mobile layout for mobile devices
-  if (shouldUseMobileUI()) {
+  if (shouldUseMobileUI) {
     return <MobileLayout>{children}</MobileLayout>;
   }
 
