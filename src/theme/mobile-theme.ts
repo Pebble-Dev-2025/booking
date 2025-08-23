@@ -51,11 +51,11 @@ export const mobileDarkTheme = {
   '--adm-color-fill-secondary': '#2C2C2E', // iOS Dark tertiary background
   '--adm-color-fill-content': '#1C1C1E',
   
-  // Text colors for dark mode
-  '--adm-color-text': '#FFFFFF', // iOS Dark label primary
-  '--adm-color-text-secondary': '#EBEBF5', // iOS Dark label secondary
-  '--adm-color-weak': '#8E8E93', // iOS Dark label tertiary
-  '--adm-color-light': '#48484A', // iOS Dark label quaternary
+  // Text colors for dark mode - improved contrast
+  '--adm-color-text': '#FFFFFF', // iOS Dark label primary - white for max contrast
+  '--adm-color-text-secondary': '#EBEBF5CC', // iOS Dark label secondary (80% opacity)
+  '--adm-color-weak': '#EBEBF599', // iOS Dark label tertiary (60% opacity) - much brighter than before
+  '--adm-color-light': '#EBEBF54D', // iOS Dark label quaternary (30% opacity)
   
   // Border colors for dark mode
   '--adm-color-border': '#38383A', // iOS Dark separator

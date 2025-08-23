@@ -50,16 +50,30 @@ export default function MobileHomePage() {
   ];
 
   return (
-    <div style={{ paddingBottom: '50px' }}>
-      <NavBar style={{ '--border-bottom': '1px solid var(--adm-border-color)' }}>
+    <div style={{ paddingBottom: '50px', color: 'var(--adm-color-text)' }}>
+      <NavBar 
+        style={{ 
+          '--border-bottom': '1px solid var(--adm-border-color)',
+          color: 'var(--adm-color-text)',
+          backgroundColor: 'var(--adm-color-fill)',
+        }}
+      >
         预订系统 - 移动端
       </NavBar>
 
       <div style={{ padding: '16px' }}>
         <Space direction='vertical' block>
-          <Card title='主题设置' style={{ marginBottom: 16 }}>
-            <List>
+          <Card 
+            title='主题设置' 
+            style={{ 
+              marginBottom: 16,
+              backgroundColor: 'var(--adm-color-fill)',
+              color: 'var(--adm-color-text)',
+            }}
+          >
+            <List style={{ backgroundColor: 'transparent' }}>
               <Item
+                style={{ color: 'var(--adm-color-text)' }}
                 extra={
                   <span style={{ color: 'var(--adm-color-weak)' }}>
                     {isDark ? '深色' : '浅色'}
@@ -68,7 +82,7 @@ export default function MobileHomePage() {
               >
                 当前主题
               </Item>
-              <Item>
+              <Item style={{ color: 'var(--adm-color-text)' }}>
                 主题选择
                 <div style={{ marginTop: 12 }}>
                   <Space wrap>
@@ -99,28 +113,42 @@ export default function MobileHomePage() {
             </List>
           </Card>
 
-          <Card title='移动端组件展示'>
-            <List>
+          <Card 
+            title='移动端组件展示'
+            style={{ 
+              backgroundColor: 'var(--adm-color-fill)',
+              color: 'var(--adm-color-text)',
+            }}
+          >
+            <List style={{ backgroundColor: 'transparent' }}>
               <Item
+                style={{ color: 'var(--adm-color-text)' }}
                 prefix={<SetOutline />}
                 extra={<Switch defaultChecked />}
               >
                 开关控件
               </Item>
-              <Item>
+              <Item style={{ color: 'var(--adm-color-text)' }}>
                 滑块控件
                 <Slider defaultValue={30} style={{ marginTop: 12 }} />
               </Item>
               <Item
+                style={{ color: 'var(--adm-color-text)' }}
                 prefix={<Avatar src='' style={{ '--size': '32px' }} />}
-                description='这是一个列表项的描述信息'
+                description={<span style={{ color: 'var(--adm-color-weak)' }}>这是一个列表项的描述信息</span>}
               >
                 列表项示例
               </Item>
             </List>
           </Card>
 
-          <Card title='网格布局'>
+          <Card 
+            title='网格布局'
+            style={{ 
+              backgroundColor: 'var(--adm-color-fill)',
+              color: 'var(--adm-color-text)',
+            }}
+          >
             <Grid columns={2} gap={8}>
               <Grid.Item>
                 <div
@@ -129,6 +157,7 @@ export default function MobileHomePage() {
                     backgroundColor: 'var(--adm-color-fill-secondary)',
                     borderRadius: '8px',
                     textAlign: 'center',
+                    color: 'var(--adm-color-text)',
                   }}
                 >
                   网格项 1
@@ -141,6 +170,7 @@ export default function MobileHomePage() {
                     backgroundColor: 'var(--adm-color-fill-secondary)',
                     borderRadius: '8px',
                     textAlign: 'center',
+                    color: 'var(--adm-color-text)',
                   }}
                 >
                   网格项 2
@@ -160,7 +190,16 @@ export default function MobileHomePage() {
         </Space>
       </div>
 
-      <TabBar style={{ position: 'fixed', bottom: 0, width: '100%' }}>
+      <TabBar 
+        style={{ 
+          position: 'fixed', 
+          bottom: 0, 
+          width: '100%',
+          backgroundColor: 'var(--adm-color-fill)',
+          borderTop: '1px solid var(--adm-border-color)',
+          color: 'var(--adm-color-text)',
+        }}
+      >
         {tabs.map(item => (
           <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
         ))}
