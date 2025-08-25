@@ -29,19 +29,17 @@ export default async function RootLayout({
 }>) {
   // Get user agent from headers for SSR device detection
   const headersList = await headers();
-  const userAgent = headersList.get('user-agent') || '';
+  const userAgent = headersList.get("user-agent") || "";
   const deviceInfo = detectDeviceFromUserAgent(userAgent);
 
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden overflow-y-auto`}
       >
         <AntdRegistry>
           <DeviceProvider deviceInfo={deviceInfo}>
-            <ThemeProvider>
-              {children}
-            </ThemeProvider>
+            <ThemeProvider>{children}</ThemeProvider>
           </DeviceProvider>
         </AntdRegistry>
       </body>

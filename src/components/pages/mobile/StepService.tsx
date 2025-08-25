@@ -111,28 +111,28 @@ export default function StepService() {
                   `}
                   onClick={() => updateData({ service: service.id })}
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1 min-w-0">
                       <h4
-                        className={`font-semibold text-lg ${isDark ? "text-white" : "text-gray-900"}`}
+                        className={`font-semibold text-lg break-words leading-tight mb-1 ${isDark ? "text-white" : "text-gray-900"}`}
                       >
                         {service.name}
                       </h4>
                       <p
-                        className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}
+                        className={`text-sm break-words ${isDark ? "text-gray-400" : "text-gray-600"}`}
                       >
                         Duration: {service.duration}
                       </p>
                     </div>
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-3 flex-shrink-0">
                       <span
-                        className={`font-bold text-lg ${selectedService === service.id ? "text-[#007AFF]" : isDark ? "text-white" : "text-gray-900"}`}
+                        className={`font-bold text-lg whitespace-nowrap ${selectedService === service.id ? "text-[#007AFF]" : isDark ? "text-white" : "text-gray-900"}`}
                       >
                         {service.price}
                       </span>
                       <div
                         className={`
-                        w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors duration-200
+                        w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors duration-200 flex-shrink-0
                         ${
                           selectedService === service.id
                             ? "border-[#007AFF] bg-[#007AFF]"
@@ -174,11 +174,12 @@ export default function StepService() {
         <button
           className={`
             w-full py-3 px-6 rounded-xl font-semibold transition-all duration-200 transform
+            shadow-2xl
             ${
               selectedService
                 ? isDark
-                  ? "bg-[#007AFF] hover:bg-[#0051D5] text-white shadow-lg hover:scale-105 active:scale-95"
-                  : "bg-[#007AFF] hover:bg-[#0051D5] text-white shadow-lg hover:scale-105 active:scale-95"
+                  ? "bg-[#007AFF] hover:bg-[#0051D5] text-white hover:scale-105 active:scale-95"
+                  : "bg-[#007AFF] hover:bg-[#0051D5] text-white hover:scale-105 active:scale-95"
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }
           `}

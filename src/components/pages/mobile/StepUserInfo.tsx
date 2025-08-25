@@ -24,7 +24,8 @@ export default function StepUserInfo() {
   const validateName = (name: string) => {
     const nameRegex = /^[a-zA-Z\s'-]+$/;
     if (!name) return "This field is required";
-    if (!nameRegex.test(name)) return "Only letters, spaces, hyphens and apostrophes allowed";
+    if (!nameRegex.test(name))
+      return "Only letters, spaces, hyphens and apostrophes allowed";
     if (name.length > 50) return "Maximum 50 characters allowed";
     return "";
   };
@@ -32,7 +33,8 @@ export default function StepUserInfo() {
   const formatPhoneNumber = (value: string) => {
     const cleaned = value.replace(/\D/g, "");
     if (cleaned.length <= 3) return cleaned;
-    if (cleaned.length <= 6) return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`;
+    if (cleaned.length <= 6)
+      return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`;
     return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
   };
 
@@ -40,7 +42,8 @@ export default function StepUserInfo() {
     const cleaned = phone.replace(/\D/g, "");
     if (!phone) return "Phone number is required";
     if (cleaned.length !== 10) return "Phone number must be 10 digits";
-    if (!cleaned.match(/^[2-9][0-8][0-9][2-9][0-9]{6}$/)) return "Invalid North American phone number format";
+    if (!cleaned.match(/^[2-9][0-8][0-9][2-9][0-9]{6}$/))
+      return "Invalid North American phone number format";
     return "";
   };
 
@@ -52,7 +55,8 @@ export default function StepUserInfo() {
   };
 
   const validateComments = (comments: string) => {
-    if (comments && comments.length > 500) return "Comments must be 500 characters or less";
+    if (comments && comments.length > 500)
+      return "Comments must be 500 characters or less";
     return "";
   };
 
@@ -89,14 +93,15 @@ export default function StepUserInfo() {
   };
 
   // Required fields validation
-  const isValid = data.firstName && 
-                  data.lastName && 
-                  data.tel && 
-                  !errors.firstName && 
-                  !errors.lastName && 
-                  !errors.tel && 
-                  !errors.email && 
-                  !errors.comments;
+  const isValid =
+    data.firstName &&
+    data.lastName &&
+    data.tel &&
+    !errors.firstName &&
+    !errors.lastName &&
+    !errors.tel &&
+    !errors.email &&
+    !errors.comments;
 
   return (
     <div>
@@ -139,8 +144,8 @@ export default function StepUserInfo() {
                   errors.firstName
                     ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                     : isDark
-                    ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
-                    : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
+                      ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
+                      : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
                 }
                 ${isDark ? "bg-[#1C1C1E] text-[#FFFFFF]" : "bg-[#FFFFFF] text-[#1D1D1F]"}
                 focus:outline-none text-base
@@ -175,8 +180,8 @@ export default function StepUserInfo() {
                   errors.lastName
                     ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                     : isDark
-                    ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
-                    : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
+                      ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
+                      : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
                 }
                 ${isDark ? "bg-[#1C1C1E] text-[#FFFFFF]" : "bg-[#FFFFFF] text-[#1D1D1F]"}
                 focus:outline-none text-base
@@ -214,8 +219,8 @@ export default function StepUserInfo() {
                   errors.tel
                     ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                     : isDark
-                    ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
-                    : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
+                      ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
+                      : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
                 }
                 ${isDark ? "bg-[#1C1C1E] text-[#FFFFFF]" : "bg-[#FFFFFF] text-[#1D1D1F]"}
                 focus:outline-none text-base
@@ -249,8 +254,8 @@ export default function StepUserInfo() {
                   errors.email
                     ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                     : isDark
-                    ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
-                    : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
+                      ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
+                      : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
                 }
                 ${isDark ? "bg-[#1C1C1E] text-[#FFFFFF]" : "bg-[#FFFFFF] text-[#1D1D1F]"}
                 focus:outline-none text-base
@@ -300,8 +305,8 @@ export default function StepUserInfo() {
                 errors.comments
                   ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
                   : isDark
-                  ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
-                  : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
+                    ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
+                    : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
               }
               ${isDark ? "bg-[#1C1C1E] text-[#FFFFFF]" : "bg-[#FFFFFF] text-[#1D1D1F]"}
               focus:outline-none text-base
@@ -317,7 +322,9 @@ export default function StepUserInfo() {
             ) : (
               <div></div>
             )}
-            <p className={`text-xs ${isDark ? "text-[#8E8E93]" : "text-[#8E8E93]"}`}>
+            <p
+              className={`text-xs ${isDark ? "text-[#8E8E93]" : "text-[#8E8E93]"}`}
+            >
               {(data.comments || "").length}/500
             </p>
           </div>
@@ -335,13 +342,13 @@ export default function StepUserInfo() {
       <div className="left-0 px-10 fixed bottom-5 w-full">
         <button
           className={`
-            w-full py-4 px-6 rounded-2xl font-semibold text-base transition-all duration-200 transform
+            w-full py-4 px-6 rounded-2xl font-semibold text-base transition-all duration-200 transform shadow-2xl
             ${
               isValid
                 ? `${
                     isDark
-                      ? "bg-[#007AFF] hover:bg-[#0051D5] text-white shadow-lg hover:scale-105 active:scale-95"
-                      : "bg-[#007AFF] hover:bg-[#0051D5] text-white shadow-lg hover:scale-105 active:scale-95"
+                      ? "bg-[#007AFF] hover:bg-[#0051D5] text-white hover:scale-105 active:scale-95"
+                      : "bg-[#007AFF] hover:bg-[#0051D5] text-white hover:scale-105 active:scale-95"
                   }`
                 : `${
                     isDark

@@ -243,7 +243,7 @@ export default function StepConfirm() {
       </div>
       <div className="left-0 px-10 fixed bottom-5 w-full">
         <button
-          className="w-full py-3 px-6 rounded-xl font-semibold transition-all duration-200 transform bg-[#007AFF] hover:bg-[#0051D5] text-white shadow-lg hover:scale-105 active:scale-95"
+          className="w-full py-3 px-6 rounded-xl font-semibold transition-all duration-200 transform bg-[#007AFF] hover:bg-[#0051D5] text-white hover:scale-105 active:scale-95 shadow-2xl"
           onClick={handleConfirm}
         >
           Confirm

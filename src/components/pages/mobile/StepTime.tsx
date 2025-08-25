@@ -143,10 +143,10 @@ export default function StepTime() {
       <div className="left-0 px-10 fixed bottom-5 w-full">
         <button
           className={`
-            w-full py-3 px-6 rounded-xl font-semibold transition-all duration-200 transform
+            w-full py-3 px-6 rounded-xl font-semibold transition-all duration-200 transform shadow-2xl
             ${
               selectedTime && selectedDate
-                ? "bg-[#007AFF] hover:bg-[#0051D5] text-white shadow-lg hover:scale-105 active:scale-95"
+                ? "bg-[#007AFF] hover:bg-[#0051D5] text-white hover:scale-105 active:scale-95"
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }
           `}
