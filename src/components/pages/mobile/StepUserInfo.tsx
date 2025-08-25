@@ -5,6 +5,7 @@ import { FiUser } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import { LuPhone } from "react-icons/lu";
 import { FaRegCommentDots } from "react-icons/fa";
+import { Stepper } from "antd-mobile";
 
 export default function StepUserInfo() {
   const { data, updateData, setStep } = useBookingStore();
@@ -151,6 +152,21 @@ export default function StepUserInfo() {
               value={data.email || ""}
               onChange={e => updateData({ email: e.target.value })}
             />
+          </div>
+
+          {/* Number of people selected */}
+          <div>
+            <div className="flex items-center mb-3">
+              <MdOutlineEmail
+                className={`w-5 h-5 mr-2 ${isDark ? "text-[#8E8E93]" : "text-[#8E8E93]"}`}
+              />
+              <label
+                className={`text-sm font-medium ${isDark ? "text-[#FFFFFF]" : "text-[#1D1D1F]"}`}
+              >
+                Number of people selected
+              </label>
+            </div>
+            <Stepper min={1} max={10} defaultValue={1} />
           </div>
         </div>
 

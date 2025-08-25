@@ -21,7 +21,7 @@ const serviceMap: { [key: string]: { name: string; price: string } } = {
 };
 
 export default function StepConfirm() {
-  const { data, setStep, reset } = useBookingStore();
+  const { data, setStep } = useBookingStore();
   const { isDark } = useTheme();
   const router = useRouter();
 
@@ -32,10 +32,8 @@ export default function StepConfirm() {
     // Here you can call API to submit booking
     console.log("Booking information:", data);
 
-    // Simulate successful submission
-    alert("Booking successful! We will contact you shortly to confirm.");
-    reset();
-    router.push("/");
+    // Navigate to confirmation page
+    router.replace("/booking/confirmed");
   };
 
   return (
