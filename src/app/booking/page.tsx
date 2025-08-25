@@ -9,6 +9,7 @@ import StepTime from "@/components/pages/mobile/StepTime";
 import StepConfirm from "@/components/pages/mobile/StepConfirm";
 import TopNavBar from "@/components/TopNavBar";
 import Steps from "@/components/Steps";
+import { useEffect } from "react";
 
 function DesktopBookingPage() {
   const { step } = useBookingStore();
@@ -35,6 +36,10 @@ function DesktopBookingPage() {
 function MobileBookingPage() {
   const { step } = useBookingStore();
   const { isDark } = useTheme();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [step]);
 
   return (
     <div className="pb-10">

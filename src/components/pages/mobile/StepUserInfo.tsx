@@ -6,6 +6,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { LuPhone } from "react-icons/lu";
 import { FaRegCommentDots } from "react-icons/fa";
 import { Stepper } from "antd-mobile";
+import { IoIosPeople } from "react-icons/io";
 
 export default function StepUserInfo() {
   const { data, updateData, setStep } = useBookingStore();
@@ -157,7 +158,7 @@ export default function StepUserInfo() {
           {/* Number of people selected */}
           <div>
             <div className="flex items-center mb-3">
-              <MdOutlineEmail
+              <IoIosPeople
                 className={`w-5 h-5 mr-2 ${isDark ? "text-[#8E8E93]" : "text-[#8E8E93]"}`}
               />
               <label
