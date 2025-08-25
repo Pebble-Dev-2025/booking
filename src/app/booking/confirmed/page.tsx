@@ -258,7 +258,7 @@ export default function BookingConfirmed() {
           </div>
 
           {/* Action Buttons */}
-          <div className="animate-bounce-in">
+          <div>
             <button
               onClick={handleNewBooking}
               className="py-3 px-6 rounded-xl font-semibold transition-all duration-200 transform bg-[#007AFF] hover:bg-[#0051D5] text-white shadow-lg hover:scale-105 active:scale-95 mb-4 w-full"
