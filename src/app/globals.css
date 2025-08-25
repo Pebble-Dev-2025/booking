@@ -24,3 +24,94 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Falling Stars Animation */
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-fall {
+  animation: fall linear infinite;
+}
+
+/* Burst effect - faster and more dramatic */
+@keyframes burstFall {
+  0% {
+    transform: translateY(-150px) rotate(0deg) scale(1.2);
+    opacity: 1;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(-50px) rotate(36deg) scale(1.1);
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.animate-burst-fall {
+  animation: burstFall ease-in forwards;
+}
+
+/* Confetti wiggle effect */
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-100px) rotate(0deg) translateX(0);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(25vh) rotate(90deg) translateX(20px);
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(-10px);
+  }
+  75% {
+    transform: translateY(75vh) rotate(270deg) translateX(15px);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg) translateX(0);
+    opacity: 0;
+  }
+}
+
+/* Additional bouncing effect for celebration */
+@keyframes bounce-in {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.8s ease-out;
+}
+
+/* Floating effect for the main success icon */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
