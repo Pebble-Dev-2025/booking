@@ -42,7 +42,7 @@ function MobileBookingPage() {
   }, [step]);
 
   return (
-    <div className="pb-10">
+    <div className="pb-26">
       {/* iOS风格粘性Steps */}
       <div
         className="sticky top-2 z-10 mx-4 mt-2 rounded-3xl"

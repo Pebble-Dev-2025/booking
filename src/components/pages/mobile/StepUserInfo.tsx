@@ -7,16 +7,99 @@ import { LuPhone } from "react-icons/lu";
 import { FaRegCommentDots } from "react-icons/fa";
 import { Stepper } from "antd-mobile";
 import { IoIosPeople } from "react-icons/io";
+import { useState } from "react";
 
 export default function StepUserInfo() {
   const { data, updateData, setStep } = useBookingStore();
   const { isDark } = useTheme();
+  const [errors, setErrors] = useState<{
+    firstName?: string;
+    lastName?: string;
+    tel?: string;
+    email?: string;
+    comments?: string;
+  }>({});
+
+  // Validation functions
+  const validateName = (name: string) => {
+    const nameRegex = /^[a-zA-Z\s'-]+$/;
+    if (!name) return "This field is required";
+    if (!nameRegex.test(name)) return "Only letters, spaces, hyphens and apostrophes allowed";
+    if (name.length > 50) return "Maximum 50 characters allowed";
+    return "";
+  };
+
+  const formatPhoneNumber = (value: string) => {
+    const cleaned = value.replace(/\D/g, "");
+    if (cleaned.length <= 3) return cleaned;
+    if (cleaned.length <= 6) return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`;
+    return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
+  };
+
+  const validatePhoneNumber = (phone: string) => {
+    const cleaned = phone.replace(/\D/g, "");
+    if (!phone) return "Phone number is required";
+    if (cleaned.length !== 10) return "Phone number must be 10 digits";
+    if (!cleaned.match(/^[2-9][0-8][0-9][2-9][0-9]{6}$/)) return "Invalid North American phone number format";
+    return "";
+  };
+
+  const validateEmail = (email: string) => {
+    if (!email) return "";
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) return "Please enter a valid email address";
+    return "";
+  };
+
+  const validateComments = (comments: string) => {
+    if (comments && comments.length > 500) return "Comments must be 500 characters or less";
+    return "";
+  };
+
+  // Handle input changes with validation
+  const handleFirstNameChange = (value: string) => {
+    updateData({ firstName: value });
+    const error = validateName(value);
+    setErrors(prev => ({ ...prev, firstName: error }));
+  };
+
+  const handleLastNameChange = (value: string) => {
+    updateData({ lastName: value });
+    const error = validateName(value);
+    setErrors(prev => ({ ...prev, lastName: error }));
+  };
+
+  const handlePhoneChange = (value: string) => {
+    const formatted = formatPhoneNumber(value);
+    updateData({ tel: formatted });
+    const error = validatePhoneNumber(formatted);
+    setErrors(prev => ({ ...prev, tel: error }));
+  };
+
+  const handleEmailChange = (value: string) => {
+    updateData({ email: value });
+    const error = validateEmail(value);
+    setErrors(prev => ({ ...prev, email: error }));
+  };
+
+  const handleCommentsChange = (value: string) => {
+    updateData({ comments: value });
+    const error = validateComments(value);
+    setErrors(prev => ({ ...prev, comments: error }));
+  };
 
   // Required fields validation
-  const isValid = data.firstName && data.lastName && data.tel;
+  const isValid = data.firstName && 
+                  data.lastName && 
+                  data.tel && 
+                  !errors.firstName && 
+                  !errors.lastName && 
+                  !errors.tel && 
+                  !errors.email && 
+                  !errors.comments;
 
   return (
-    <div className="space-y-8">
+    <div>
       {/* Header */}
       <div className="text-center">
         <h2
@@ -53,16 +136,23 @@ export default function StepUserInfo() {
               className={`
                 w-full px-4 py-4 rounded-2xl border transition-all duration-200
                 ${
-                  isDark
+                  errors.firstName
+                    ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                    : isDark
                     ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
                     : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
                 }
+                ${isDark ? "bg-[#1C1C1E] text-[#FFFFFF]" : "bg-[#FFFFFF] text-[#1D1D1F]"}
                 focus:outline-none text-base
               `}
               placeholder="Enter your first name"
               value={data.firstName || ""}
-              onChange={e => updateData({ firstName: e.target.value })}
+              onChange={e => handleFirstNameChange(e.target.value)}
+              maxLength={50}
             />
+            {errors.firstName && (
+              <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
+            )}
           </div>
 
           {/* Last Name */}
@@ -82,16 +172,23 @@ export default function StepUserInfo() {
               className={`
                 w-full px-4 py-4 rounded-2xl border transition-all duration-200
                 ${
-                  isDark
+                  errors.lastName
+                    ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                    : isDark
                     ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
                     : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
                 }
+                ${isDark ? "bg-[#1C1C1E] text-[#FFFFFF]" : "bg-[#FFFFFF] text-[#1D1D1F]"}
                 focus:outline-none text-base
               `}
               placeholder="Enter your last name"
               value={data.lastName || ""}
-              onChange={e => updateData({ lastName: e.target.value })}
+              onChange={e => handleLastNameChange(e.target.value)}
+              maxLength={50}
             />
+            {errors.lastName && (
+              <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
+            )}
           </div>
         </div>
 
@@ -114,16 +211,22 @@ export default function StepUserInfo() {
               className={`
                 w-full px-4 py-4 rounded-2xl border transition-all duration-200
                 ${
-                  isDark
+                  errors.tel
+                    ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                    : isDark
                     ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
                     : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
                 }
+                ${isDark ? "bg-[#1C1C1E] text-[#FFFFFF]" : "bg-[#FFFFFF] text-[#1D1D1F]"}
                 focus:outline-none text-base
               `}
-              placeholder="Enter your phone number"
+              placeholder="(555) 123-4567"
               value={data.tel || ""}
-              onChange={e => updateData({ tel: e.target.value })}
+              onChange={e => handlePhoneChange(e.target.value)}
             />
+            {errors.tel && (
+              <p className="text-red-500 text-sm mt-1">{errors.tel}</p>
+            )}
           </div>
 
           {/* Email */}
@@ -143,16 +246,22 @@ export default function StepUserInfo() {
               className={`
                 w-full px-4 py-4 rounded-2xl border transition-all duration-200
                 ${
-                  isDark
+                  errors.email
+                    ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                    : isDark
                     ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
                     : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
                 }
+                ${isDark ? "bg-[#1C1C1E] text-[#FFFFFF]" : "bg-[#FFFFFF] text-[#1D1D1F]"}
                 focus:outline-none text-base
               `}
-              placeholder="Enter your email address"
+              placeholder="example@email.com"
               value={data.email || ""}
-              onChange={e => updateData({ email: e.target.value })}
+              onChange={e => handleEmailChange(e.target.value)}
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+            )}
           </div>
 
           {/* Number of people selected */}
@@ -188,16 +297,30 @@ export default function StepUserInfo() {
             className={`
               w-full px-4 py-4 rounded-2xl border transition-all duration-200 resize-none
               ${
-                isDark
+                errors.comments
+                  ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                  : isDark
                   ? "bg-[#1C1C1E] border-[#38383A] text-[#FFFFFF] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
                   : "bg-[#FFFFFF] border-[#D1D1D6] text-[#1D1D1F] placeholder-[#8E8E93] focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20"
               }
+              ${isDark ? "bg-[#1C1C1E] text-[#FFFFFF]" : "bg-[#FFFFFF] text-[#1D1D1F]"}
               focus:outline-none text-base
             `}
-            placeholder="Any special requests or comments..."
+            placeholder="Any special requests or comments... (500 characters max)"
             value={data.comments || ""}
-            onChange={e => updateData({ comments: e.target.value })}
+            onChange={e => handleCommentsChange(e.target.value)}
+            maxLength={500}
           />
+          <div className="flex justify-between items-center mt-1">
+            {errors.comments ? (
+              <p className="text-red-500 text-sm">{errors.comments}</p>
+            ) : (
+              <div></div>
+            )}
+            <p className={`text-xs ${isDark ? "text-[#8E8E93]" : "text-[#8E8E93]"}`}>
+              {(data.comments || "").length}/500
+            </p>
+          </div>
         </div>
       </div>
 
@@ -209,7 +332,7 @@ export default function StepUserInfo() {
       </div>
 
       {/* iOS-style Continue Button */}
-      <div className="pt-4">
+      <div className="left-0 px-10 fixed bottom-5 w-full">
         <button
           className={`
             w-full py-4 px-6 rounded-2xl font-semibold text-base transition-all duration-200 transform
