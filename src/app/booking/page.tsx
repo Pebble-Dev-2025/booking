@@ -12,7 +12,7 @@ import Steps from "@/components/Steps";
 import { useEffect } from "react";
 
 function DesktopBookingPage() {
-  const { step } = useBookingStore();
+  // const { step } = useBookingStore();
   const { getBackgroundColor } = useTheme();
 
   return (
@@ -20,7 +20,7 @@ function DesktopBookingPage() {
       className="min-h-screen"
       style={{ backgroundColor: getBackgroundColor() }}
     >
-      <div className="max-w-4xl mx-auto px-6 py-8">
+      {/* <div className="max-w-4xl mx-auto px-6 py-8">
         <Steps />
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 mt-6">
           {step === 0 && <StepUserInfo />}
@@ -28,7 +28,7 @@ function DesktopBookingPage() {
           {step === 2 && <StepTime />}
           {step === 3 && <StepConfirm />}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -38,7 +38,7 @@ function MobileBookingPage() {
   const { isDark } = useTheme();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [step]);
 
   return (
