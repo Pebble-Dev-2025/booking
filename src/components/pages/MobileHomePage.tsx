@@ -4,13 +4,21 @@ import { CiPhone } from "react-icons/ci";
 import { MdOutlineEmail } from "react-icons/md";
 import { SlLocationPin } from "react-icons/sl";
 import GoogleMap from "@/components/GoogleMap";
+import { useTheme } from "@/hooks/useTheme";
+import { useRouter } from "next/navigation";
 
 export default function MobileHomePage() {
+  const { getBackgroundColor } = useTheme();
+  const router = useRouter();
+
   return (
     <div className="relative pb-30">
       <div className="relative">
         <div className="bg-gradient-to-r from-purple-500 to-pink-500 w-full h-80 overflow-hidden rounded-br-[130px]"></div>
-        <div className="absolute z-10 bg-[#F2F2F7] w-28 h-28 -bottom-14 left-16 overflow-hidden rounded-4xl p-2">
+        <div
+          className="absolute z-10 w-28 h-28 -bottom-14 left-16 overflow-hidden rounded-4xl p-2"
+          style={{ backgroundColor: getBackgroundColor() }}
+        >
           <div className="bg-pink-400 w-full h-full rounded-4xl"></div>
         </div>
       </div>
@@ -35,16 +43,17 @@ export default function MobileHomePage() {
         </div>
         <div className="text-sm flex items-center mb-4">
           <SlLocationPin className="mr-2 w-5 h-5" />
-          <span className="underline">
-            10 Dunkineely Road, Flat Bush Auckland, Auckland 2011
-          </span>
+          <span className="underline">781 Prospect Pl, Brooklyn, NY 11216</span>
         </div>
         <div className="w-full h-52 overflow-hidden rounded-2xl mb-4">
           <GoogleMap />
         </div>
       </div>
       <div className="pl-18 pr-18 fixed w-full bottom-10">
-        <button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-6 w-full rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+        <button
+          className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-6 w-full rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out"
+          onClick={() => router.push("/booking")}
+        >
           Book Now
         </button>
       </div>
